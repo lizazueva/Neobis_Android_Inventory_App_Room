@@ -15,6 +15,21 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentMainBinding.inflate(inflater, container, false)
-        return binding.root
+
+
+        binding.bottomMenu.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.icon_menu -> {
+                    val menuFragment = MenuFragment()
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, menuFragment)
+                        .commit()
+                    true
+                }
+
+                else -> false
+            }
+        }
+            return binding.root
+        }
     }
-}
