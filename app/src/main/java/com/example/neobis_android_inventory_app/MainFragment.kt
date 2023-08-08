@@ -17,6 +17,7 @@ class MainFragment : Fragment() {
         binding = FragmentMainBinding.inflate(inflater, container, false)
 
 
+
         binding.bottomMenu.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.icon_menu -> {

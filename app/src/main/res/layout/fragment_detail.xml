@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailFragment">
+
+
+    <Button
+        android:id="@+id/button_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:text="Добавить"
+        app:layout_constraintEnd_toEndOf="@+id/editText_amount_product"
+        app:layout_constraintTop_toBottomOf="@+id/editText_amount_product" />
+
+    <TextView
+        android:id="@+id/text_name_product2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="30dp"
+        android:text="Наименование товара"
+        android:textColor="#A6A7A7"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productImage" />
+
+    <TextView
+        android:id="@+id/text_amount_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Количество товара"
+        android:textColor="#A6A7A7"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/text_name_product2"
+        app:layout_constraintTop_toBottomOf="@+id/editText_brand_product" />
+
+    <TextView
+        android:id="@+id/text_price_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Цена товара"
+        android:textColor="#A6A7A7"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/text_name_product2"
+        app:layout_constraintTop_toBottomOf="@+id/editText_name_product" />
+
+    <TextView
+        android:id="@+id/text_add_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Добавить товар"
+        android:textColor="#003C68"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/arrowleft"
+        app:layout_constraintEnd_toStartOf="@+id/text_add_product"
+        app:layout_constraintHorizontal_bias="0.761"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/productImage"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/placeholder_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_add_product" />
+
+    <TextView
+        android:id="@+id/text_brand_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Производитель товара"
+        android:textColor="#A6A7A7"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/text_name_product2"
+        app:layout_constraintTop_toBottomOf="@+id/editText_price_product" />
+
+    <EditText
+        android:id="@+id/editText_name_product"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="26dp"
+        android:ems="10"
+        android:background="@drawable/search_back"
+        android:hint="Впишите наименование товара"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/text_name_product2"
+        app:layout_constraintTop_toBottomOf="@+id/text_name_product2" />
+
+    <EditText
+        android:id="@+id/editText_price_product"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="26dp"
+        android:ems="10"
+        android:background="@drawable/search_back"
+        android:hint="Впишите цену товара"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/text_price_product"
+        app:layout_constraintTop_toBottomOf="@+id/text_price_product" />
+
+    <EditText
+        android:id="@+id/editText_brand_product"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="26dp"
+        android:ems="10"
+        android:background="@drawable/search_back"
+        android:hint="Впишите производителя товара"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/text_brand_product"
+        app:layout_constraintTop_toBottomOf="@+id/text_brand_product" />
+
+    <EditText
+        android:id="@+id/editText_amount_product"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="26dp"
+        android:ems="10"
+        android:background="@drawable/search_back"
+        android:hint="Впишите количество товара"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/text_amount_product"
+        app:layout_constraintTop_toBottomOf="@+id/text_amount_product" />
+
+    <Button
+        android:id="@+id/button_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Отмена"
+        app:layout_constraintStart_toStartOf="@+id/editText_amount_product"
+        app:layout_constraintTop_toBottomOf="@+id/editText_amount_product" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

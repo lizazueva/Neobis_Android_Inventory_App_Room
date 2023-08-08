@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.neobis_android_inventory_app.databinding.FragmentMenuBinding
 
@@ -18,7 +19,12 @@ class MenuFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMenuBinding.inflate(inflater, container, false)
-        //.layoutManager = LinearLayoutManager(requireContext())
+        val layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.recyclerMenu.layoutManager = layoutManager
+        val product = arrayListOf(Product(R.drawable.icon_menu, "","","",""),
+            Product(R.drawable.icon_menu,"","","",""))
+        binding.recyclerMenu.adapter = RecyclerViewAdapter(product)
+
         return binding.root
     }
 }

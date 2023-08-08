@@ -25,7 +25,7 @@
             android:layout_height="257dp">
 
             <TextView
-                android:id="@+id/text_brand2"
+                android:id="@+id/text_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
