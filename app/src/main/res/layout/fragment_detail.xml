@@ -61,11 +61,11 @@
         android:text="Добавить товар"
         android:textColor="#003C68"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/imageView_back"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView_back"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="16dp"

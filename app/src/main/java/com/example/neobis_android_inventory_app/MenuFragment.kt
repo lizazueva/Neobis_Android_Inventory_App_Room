@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.neobis_android_inventory_app.databinding.FragmentMenuBinding
@@ -24,6 +25,11 @@ class MenuFragment : Fragment() {
         val product = arrayListOf(Product(R.drawable.icon_menu, "","","",""),
             Product(R.drawable.icon_menu,"","","",""))
         binding.recyclerMenu.adapter = RecyclerViewAdapter(product)
+
+        binding.floatingActionButton.setOnClickListener {
+            val action = MainFragmentDirections.actionMainFragmentToDetailFragment()
+            findNavController().navigate(action)
+        }
 
         return binding.root
     }

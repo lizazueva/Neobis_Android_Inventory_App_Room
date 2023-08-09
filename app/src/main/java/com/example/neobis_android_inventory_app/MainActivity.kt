@@ -11,5 +11,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (savedInstanceState == null) {
+            val menuFragment = MenuFragment()
+            supportFragmentManager.beginTransaction()
+                .add(R.id.fragment_container, menuFragment)
+                .commit()
+        }
     }
 }
