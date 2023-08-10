@@ -3,6 +3,7 @@ package com.example.neobis_android_inventory_app
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.neobis_android_inventory_app.databinding.ActivityMainBinding
+import com.example.neobis_android_inventory_app.view.MenuFragment
 
 class MainActivity : AppCompatActivity() {
 

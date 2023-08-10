@@ -6,7 +6,7 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.neobis_android_inventory_app.DetailFragment"
+        android:name="com.example.neobis_android_inventory_app.view.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.neobis_android_inventory_app.MainFragment"
+        android:name="com.example.neobis_android_inventory_app.view.MainFragment"
         android:label="MainFragment" >
         <action
             android:id="@+id/action_mainFragment_to_detailFragment"
