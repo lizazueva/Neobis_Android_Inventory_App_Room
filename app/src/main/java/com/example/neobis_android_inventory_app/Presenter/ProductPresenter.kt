@@ -33,7 +33,9 @@ class ProductPresenter(context: Context): ProductContract {
     }
 
     override fun insertProduct(product: Product) {
-        repository.insert(product)
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.insert(product)
+        }
     }
 
     override fun getProduct(id: Int) {

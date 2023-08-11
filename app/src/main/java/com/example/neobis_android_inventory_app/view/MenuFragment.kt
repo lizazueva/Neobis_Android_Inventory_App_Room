@@ -41,7 +41,6 @@ class MenuFragment : Fragment(), ViewContract {
 
         getAllProducts()
 
-
         return binding.root
     }
     private fun getAllProducts() {
@@ -52,6 +51,7 @@ class MenuFragment : Fragment(), ViewContract {
 
     override fun showProducts(products: List<Product>) {
         adapter.product = products
+        adapter.notifyDataSetChanged()
     }
 
     override fun showError(message: String) {

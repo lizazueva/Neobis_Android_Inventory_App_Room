@@ -9,11 +9,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.neobis_android_inventory_app.Presenter.ProductPresenter
 import com.example.neobis_android_inventory_app.Presenter.ViewContract
 import com.example.neobis_android_inventory_app.Product
+import com.example.neobis_android_inventory_app.R
 import com.example.neobis_android_inventory_app.databinding.FragmentDetailBinding
-import com.example.neobis_android_inventory_app.db.MainDB
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+
 
 class DetailFragment: Fragment(), ViewContract {
 
@@ -40,9 +38,6 @@ class DetailFragment: Fragment(), ViewContract {
         }
 
         binding.buttonAdd.setOnClickListener {
-            val product = Product(null, binding.productImage.id, binding.editTextNameProduct.text.toString(),
-                binding.editTextPriceProduct.text.toString(), binding.editTextBrandProduct.text.toString(),
-                binding.editTextAmountProduct.text.toString())
            //Записываем добавленный продукт
             insertProduct()
 
@@ -54,7 +49,18 @@ class DetailFragment: Fragment(), ViewContract {
     private fun insertProduct() {
         presenter = ProductPresenter(requireContext())
         presenter.attachView(this)
+        val product = Product(
+            null,
+            R.drawable.placeholder_image,
+            binding.editTextNameProduct.text.toString(),
+            binding.editTextPriceProduct.text.toString(),
+            binding.editTextBrandProduct.text.toString(),
+            binding.editTextAmountProduct.text.toString()
+        )
         presenter.insertProduct(product)
+        val action = DetailFragmentDirections.actionDetailFragmentToMainFragment()
+        findNavController().navigate(action)
+
     }
 
     override fun showProducts(products: List<Product>) {

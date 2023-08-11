@@ -15,8 +15,10 @@ open class Repository(val productDao: Dao) {
         }
     }
 
-    fun insert(product: Product){
-        productDao.insert(product)
+    suspend fun insert(product: Product){
+        return  withContext(Dispatchers.IO){
+            productDao.insert(product)
+        }
     }
 
     fun getProduct(id: Int): LiveData<Product?>{
