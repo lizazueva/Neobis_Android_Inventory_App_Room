@@ -4,18 +4,10 @@ import android.app.Application
 import androidx.room.Room
 
 class App():Application() {
+    class App():Application() {
 
-   companion object{
-       lateinit var db: MainDB
-   }
-    override fun onCreate() {
-        super.onCreate()
-         db = Room.databaseBuilder(
-            this,
-            MainDB::class.java,
-            "test db")
-            .allowMainThreadQueries()
-            .build()
-
+        class InventoryApplication: Application() {
+            val database: MainDB by lazy { MainDB.getInstance(this) }
+        }
     }
 }

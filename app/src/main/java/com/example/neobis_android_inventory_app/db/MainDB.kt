@@ -10,11 +10,23 @@ import com.example.neobis_android_inventory_app.Product
 abstract class MainDB: RoomDatabase() {
     abstract fun getDao(): Dao
     companion object{
-        fun getDb(context: Context):MainDB{
-            return Room.databaseBuilder(
-                context.applicationContext,
-                MainDB::class.java,
-                "test db").build()
+        @Volatile
+        private var INSTANCE: MainDB? = null
+        fun getInstance(context: Context): MainDB {
+            synchronized(this) {
+                var instance = INSTANCE
+                if (instance == null) {
+                    instance = Room.databaseBuilder(
+                        context.applicationContext,
+                        MainDB::class.java,
+                        "item_database"
+                    )
+                        .fallbackToDestructiveMigration()
+                        .build()
+                    INSTANCE = instance
+                }
+                return instance
+            }
         }
     }
 }

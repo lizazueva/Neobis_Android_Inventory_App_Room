@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.neobis_android_inventory_app.db.MainDB
 
-class RecyclerViewAdapter (val product: List<Product>) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>(){
+class RecyclerViewAdapter (var product: List<Product>) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ViewHolder {
         lateinit var binding: ItemBinding

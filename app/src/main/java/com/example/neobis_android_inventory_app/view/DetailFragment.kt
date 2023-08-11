@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.example.neobis_android_inventory_app.Presenter.ProductPresenter
+import com.example.neobis_android_inventory_app.Presenter.ViewContract
 import com.example.neobis_android_inventory_app.Product
 import com.example.neobis_android_inventory_app.databinding.FragmentDetailBinding
 import com.example.neobis_android_inventory_app.db.MainDB
@@ -13,11 +15,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class DetailFragment: Fragment() {
+class DetailFragment: Fragment(), ViewContract {
 
     private lateinit var binding: FragmentDetailBinding
-    private val productList = mutableListOf<Product>()
-    val db =MainDB.getDb(requireContext())
+    private lateinit var presenter: ProductPresenter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,17 +44,25 @@ class DetailFragment: Fragment() {
                 binding.editTextPriceProduct.text.toString(), binding.editTextBrandProduct.text.toString(),
                 binding.editTextAmountProduct.text.toString())
            //Записываем добавленный продукт
-//            insertProduct(product)
+            insertProduct()
 
         }
 
         return binding.root
     }
 
-//    fun insertProduct (product: Product){
-//        CoroutineScope(Dispatchers.IO).launch {
-//            productList.add(product)
-//            db.getDao().insert(product)
-//        }
-//    }
+    private fun insertProduct() {
+        presenter = ProductPresenter(requireContext())
+        presenter.attachView(this)
+        presenter.insertProduct(product)
+    }
+
+    override fun showProducts(products: List<Product>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun showError(message: String) {
+        TODO("Not yet implemented")
+    }
+
 }

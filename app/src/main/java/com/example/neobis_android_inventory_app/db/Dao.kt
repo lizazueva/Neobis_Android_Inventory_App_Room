@@ -13,9 +13,9 @@ interface Dao {
     @Insert
     fun insert(product: Product)
     @Query("SELECT*FROM ProductDB")
-    fun getAllProduct(): LiveData<List<Product>>
+    suspend fun getAllProduct(): List<Product>
     @Query("SELECT * FROM ProductDB WHERE id =(:id)")
-    fun getCrime(id: Int): LiveData<Product?>
+    fun getProduct(id: Int): LiveData<Product?>
     @Update
     fun updateProduct(product: Product)
 }
