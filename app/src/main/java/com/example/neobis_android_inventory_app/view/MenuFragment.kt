@@ -17,7 +17,7 @@ import com.example.neobis_android_inventory_app.db.Dao
 import com.example.neobis_android_inventory_app.db.Repository
 
 
-class MenuFragment : Fragment(), ViewContract {
+class MenuFragment : Fragment(), ViewContract,RecyclerViewAdapter.OnItemClickListener {
 
     private lateinit var binding: FragmentMenuBinding
     private lateinit var presenter: ProductPresenter
@@ -32,11 +32,10 @@ class MenuFragment : Fragment(), ViewContract {
         binding.recyclerMenu.layoutManager = layoutManager
 
         binding.floatingActionButton.setOnClickListener {
-            val action = MainFragmentDirections.actionMainFragmentToDetailFragment()
-            findNavController().navigate(action)
+            findNavController().navigate(R.id.action_mainFragment_to_detailFragment)
         }
 
-        adapter = RecyclerViewAdapter(emptyList())
+        adapter = RecyclerViewAdapter(emptyList(), this)
         binding.recyclerMenu.adapter = adapter
 
         getAllProducts()
@@ -55,6 +54,16 @@ class MenuFragment : Fragment(), ViewContract {
     }
 
     override fun showError(message: String) {
+    }
+
+    override fun onItemClick(product: Product) {
+        val action = MainFragmentDirections.actionMainFragmentToDetailFragment(product)
+        findNavController().navigate(action)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.detachView()
     }
 
 

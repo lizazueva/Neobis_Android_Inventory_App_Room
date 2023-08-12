@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_detailFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <argument
+            android:name="product"
+            app:argType="com.example.neobis_android_inventory_app.Product" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
