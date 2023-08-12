@@ -2,4 +2,16 @@
     <string name="app_name">Neobis_Android_Inventory_App</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name_product">Наименование товара</string>
+    <string name="add_product">Добавить товар</string>
+    <string name="brand_product">Производитель товара</string>
+    <string name="amount_product">Количество товара</string>
+    <string name="price_product">Цена товара</string>
+    <string name="name_product_hint">Впишите наименование товара</string>
+    <string name="editText_price_product">Впишите цену товара</string>
+    <string name="editText_brand_product">Впишите производителя товара</string>
+    <string name="editText_amount_product">Впишите количество товара</string>
+    <string name="button_cancel">Отмена</string>
+    <string name="button_add">Добавить</string>
+    <string name="text_topbar">Главное</string>
 </resources>

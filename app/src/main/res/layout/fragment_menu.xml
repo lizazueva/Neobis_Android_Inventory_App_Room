@@ -13,7 +13,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="34dp"
         android:fontFamily="@font/roboto_bold"
-        android:text="Главное"
+        android:text="@string/text_topbar"
         android:textColor="#003C68"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,10 +36,11 @@
         android:id="@+id/recycler_menu"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view_for_recycler"
-        app:layout_constraintEnd_toEndOf="@+id/view_for_recycler"
-        app:layout_constraintStart_toStartOf="@+id/view_for_recycler"
-        app:layout_constraintTop_toTopOf="@+id/view_for_recycler" />
+        android:layout_marginTop="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -55,17 +56,5 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:shapeAppearanceOverlay="@drawable/circle" />
-
-    <View
-        android:id="@+id/view_for_recycler"
-        android:layout_width="408dp"
-        android:layout_height="512dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="3dp"
-        android:layout_marginBottom="13dp"
-        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

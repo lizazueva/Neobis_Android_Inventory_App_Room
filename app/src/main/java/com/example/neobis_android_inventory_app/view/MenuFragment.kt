@@ -13,8 +13,6 @@ import com.example.neobis_android_inventory_app.Product
 import com.example.neobis_android_inventory_app.R
 import com.example.neobis_android_inventory_app.RecyclerViewAdapter
 import com.example.neobis_android_inventory_app.databinding.FragmentMenuBinding
-import com.example.neobis_android_inventory_app.db.Dao
-import com.example.neobis_android_inventory_app.db.Repository
 
 
 class MenuFragment : Fragment(), ViewContract,RecyclerViewAdapter.OnItemClickListener {
