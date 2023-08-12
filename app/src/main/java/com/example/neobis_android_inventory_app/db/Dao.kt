@@ -11,11 +11,11 @@ import java.util.UUID
 @Dao
 interface Dao {
     @Insert
-    fun insert(product: Product)
+    suspend fun insert(product: Product)
     @Query("SELECT*FROM ProductDB")
     suspend fun getAllProduct(): List<Product>
     @Query("SELECT * FROM ProductDB WHERE id =(:id)")
     fun getProduct(id: Int): LiveData<Product?>
     @Update
-    fun updateProduct(product: Product)
+    suspend fun updateProduct(product: Product)
 }

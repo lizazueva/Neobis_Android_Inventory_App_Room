@@ -43,7 +43,9 @@ class ProductPresenter(context: Context): ProductContract {
     }
 
     override fun updateProduct(product: Product) {
-        repository.updateProduct(product)
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.updateProduct(product)
+        }
     }
 
     fun attachView(view: ViewContract) {

@@ -18,19 +18,22 @@ import com.example.neobis_android_inventory_app.databinding.FragmentDetailBindin
 
     private lateinit var binding: FragmentDetailBinding
     private lateinit var presenter: ProductPresenter
+    private var product: Product? = null
 
 
-    override fun onCreateView(
+     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDetailBinding.inflate(inflater, container, false)
-        val product = arguments?.getParcelable<Product?>("product")
+        product = arguments?.getParcelable<Product?>("product")
+         presenter = ProductPresenter(requireContext())
+         presenter.attachView(this)
         if (product != null) {
-            binding.editTextNameProduct.setText(product.name)
-            binding.editTextPriceProduct.setText(product.price)
-            binding.editTextBrandProduct.setText(product.brand)
-            binding.editTextAmountProduct.setText(product.amount)
+            binding.editTextNameProduct.setText(product?.name)
+            binding.editTextPriceProduct.setText(product?.price)
+            binding.editTextBrandProduct.setText(product?.brand)
+            binding.editTextAmountProduct.setText(product?.amount)
             binding.buttonAdd.setText("Сохранить")
             binding.textAddProduct.setText("Детали о товаре")
         }
@@ -56,24 +59,29 @@ import com.example.neobis_android_inventory_app.databinding.FragmentDetailBindin
         return binding.root
     }
 
+
     private fun insertProduct() {
-        presenter = ProductPresenter(requireContext())
-        presenter.attachView(this)
-        val product = Product(
-            0,
-            R.drawable.placeholder_image,
-            binding.editTextNameProduct.text.toString(),
-            binding.editTextPriceProduct.text.toString(),
-            binding.editTextBrandProduct.text.toString(),
-            binding.editTextAmountProduct.text.toString()
-        )
-        val name = product.name
-        val price = product.price
-        val brand = product.brand
-        val amount = product.amount
+        val name = binding.editTextNameProduct.text.toString()
+        val price = binding.editTextPriceProduct.text.toString()
+        val brand = binding.editTextBrandProduct.text.toString()
+        val amount = binding.editTextAmountProduct.text.toString()
+
         if (validate(name, price, brand, amount)) {
-            presenter.insertProduct(product)
-            Toast.makeText(requireContext(), "Товар добавлен", Toast.LENGTH_SHORT).show()
+            val updatedProduct = Product(
+                product?.id,
+                R.drawable.placeholder_image,
+                name,
+                price,
+                brand,
+                amount
+            )
+            if (product != null) {
+                presenter.updateProduct(updatedProduct)
+                Toast.makeText(requireContext(), "Товар изменен", Toast.LENGTH_SHORT).show()
+            } else {
+                presenter.insertProduct(updatedProduct)
+                Toast.makeText(requireContext(), "Товар добавлен", Toast.LENGTH_SHORT).show()
+            }
             val action = DetailFragmentDirections.actionDetailFragmentToMainFragment()
             findNavController().navigate(action)
         } else {

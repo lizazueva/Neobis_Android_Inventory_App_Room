@@ -25,7 +25,7 @@ open class Repository(val productDao: Dao) {
         return productDao.getProduct(id)
     }
 
-    fun updateProduct(product: Product){
+    suspend fun updateProduct(product: Product){
         productDao.updateProduct(product)
     }
 
