@@ -1,5 +1,8 @@
 package com.example.neobis_android_inventory_app.view
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.neobis_android_inventory_app.Presenter.ProductPresenter
 import com.example.neobis_android_inventory_app.Presenter.ViewContract
 import com.example.neobis_android_inventory_app.Product
@@ -19,6 +23,8 @@ import com.example.neobis_android_inventory_app.databinding.FragmentDetailBindin
     private lateinit var binding: FragmentDetailBinding
     private lateinit var presenter: ProductPresenter
     private var product: Product? = null
+    private var PICK_IMAGE_REQUEST = 1
+    private var  selectedImageUri:Uri? = null
 
 
      override fun onCreateView(
@@ -56,6 +62,10 @@ import com.example.neobis_android_inventory_app.databinding.FragmentDetailBindin
 
         }
 
+        binding.productImage.setOnClickListener {
+            chooseImage()
+        }
+
         return binding.root
     }
 
@@ -69,7 +79,7 @@ import com.example.neobis_android_inventory_app.databinding.FragmentDetailBindin
         if (validate(name, price, brand, amount)) {
             val updatedProduct = Product(
                 product?.id,
-                R.drawable.placeholder_image,
+                selectedImageUri.toString(),
                 name,
                 price,
                 brand,
@@ -96,6 +106,21 @@ import com.example.neobis_android_inventory_app.databinding.FragmentDetailBindin
 
         return true
     }
+
+     private fun chooseImage() {
+         val intent = Intent(Intent.ACTION_GET_CONTENT)
+         intent.type = "image/*"
+         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST)
+     }
+
+     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+         super.onActivityResult(requestCode, resultCode, data)
+
+         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.data != null) {
+             selectedImageUri = data.data
+             Glide.with(this).load(selectedImageUri).into(binding.productImage)
+         }
+     }
 
     override fun showProducts(products: List<Product>) {
         TODO("Not yet implemented")

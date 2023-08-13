@@ -12,7 +12,7 @@ data class Product (
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
     @ColumnInfo(name = "image")
-    var  image: Int,
+    var  image: String,
     @ColumnInfo(name = "name")
     var  name: String,
     @ColumnInfo(name = "price")

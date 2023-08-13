@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.neobis_android_inventory_app.Product
 
-@Database (entities = [Product::class], version = 1)
+@Database (entities = [Product::class], version = 2)
 abstract class MainDB: RoomDatabase() {
     abstract fun getDao(): Dao
     companion object{

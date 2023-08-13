@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 class RecyclerViewAdapter (var product: List<Product>, val listener: OnItemClickListener) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>(){
 
@@ -28,7 +29,8 @@ class RecyclerViewAdapter (var product: List<Product>, val listener: OnItemClick
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = product[position]
-        holder.image.setImageResource (currentItem.image)
+//        holder.image.setImageResource(currentItem.image.toInt())
+        Glide.with(holder.image).load(currentItem.image).into(holder.image)
         holder.name.text = currentItem.name
         holder.price.text = currentItem.price
         holder.brand.text = currentItem.brand
