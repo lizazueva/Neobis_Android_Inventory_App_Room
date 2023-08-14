@@ -40,6 +40,7 @@ class MenuFragment : Fragment(), ViewContract,RecyclerViewAdapter.OnItemClickLis
 
         return binding.root
     }
+
     private fun getAllProducts() {
         presenter = ProductPresenter(requireContext())
         presenter.attachView(this)

@@ -14,7 +14,6 @@ import com.bumptech.glide.Glide
 import com.example.neobis_android_inventory_app.Presenter.ProductPresenter
 import com.example.neobis_android_inventory_app.Presenter.ViewContract
 import com.example.neobis_android_inventory_app.Product
-import com.example.neobis_android_inventory_app.R
 import com.example.neobis_android_inventory_app.databinding.FragmentDetailBinding
 
 
@@ -36,6 +35,7 @@ import com.example.neobis_android_inventory_app.databinding.FragmentDetailBindin
          presenter = ProductPresenter(requireContext())
          presenter.attachView(this)
         if (product != null) {
+            Glide.with(this).load(Uri.parse(product?.image)).into(binding.productImage)
             binding.editTextNameProduct.setText(product?.name)
             binding.editTextPriceProduct.setText(product?.price)
             binding.editTextBrandProduct.setText(product?.brand)
