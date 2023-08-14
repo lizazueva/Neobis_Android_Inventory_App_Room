@@ -13,7 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="20dp"
+        android:background="@drawable/bottom_detail"
         android:text="@string/button_add"
+        android:textColor="@drawable/button_text_color"
         app:layout_constraintEnd_toEndOf="@+id/editText_amount_product"
         app:layout_constraintTop_toBottomOf="@+id/editText_amount_product" />
 
@@ -81,6 +83,7 @@
         android:layout_width="150dp"
         android:layout_height="100dp"
         android:layout_marginTop="50dp"
+        android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/placeholder_image"
         app:layout_constraintEnd_toEndOf="parent"
@@ -167,7 +170,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:background="@drawable/bottom_detail"
         android:text="@string/button_cancel"
+        android:textColor="@drawable/button_text_color"
         app:layout_constraintStart_toStartOf="@+id/editText_amount_product"
         app:layout_constraintTop_toBottomOf="@+id/editText_amount_product" />
 

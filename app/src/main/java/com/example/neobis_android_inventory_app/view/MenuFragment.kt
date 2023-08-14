@@ -60,6 +60,7 @@ class MenuFragment : Fragment(), ViewContract,RecyclerViewAdapter.OnItemClickLis
         findNavController().navigate(action)
     }
 
+
     override fun onDestroy() {
         super.onDestroy()
         presenter.detachView()

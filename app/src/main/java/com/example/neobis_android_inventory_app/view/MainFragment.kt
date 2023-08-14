@@ -31,4 +31,12 @@ class MainFragment : Fragment() {
         }
             return binding.root
         }
+
+    override fun onResume() {
+        super.onResume()
+        val menuFragment = MenuFragment()
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, menuFragment)
+            .commit()
+    }
     }

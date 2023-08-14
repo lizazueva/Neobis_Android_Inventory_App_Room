@@ -79,7 +79,7 @@ import com.example.neobis_android_inventory_app.databinding.FragmentDetailBindin
         if (validate(name, price, brand, amount)) {
             val updatedProduct = Product(
                 product?.id,
-                selectedImageUri.toString(),
+                selectedImageUri?.toString() ?: product?.image ?: "",
                 name,
                 price,
                 brand,
