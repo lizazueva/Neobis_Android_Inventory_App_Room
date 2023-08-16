@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.ArchiveFragment">
+
+    <TextView
+        android:id="@+id/text_topbar_arhive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="34dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/text_topbar_arhive"
+        android:textColor="#003C68"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SearchView
+        android:id="@+id/searchView_arhive"
+        android:layout_width="240dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/search_back"
+        android:iconifiedByDefault="false"
+        android:queryBackground="@android:color/transparent"
+        android:queryHint="Поиск"
+        app:layout_constraintStart_toStartOf="@+id/text_topbar_arhive"
+        app:layout_constraintTop_toBottomOf="@+id/text_topbar_arhive" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_menu_arhive"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView_arhive" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,28 +15,44 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentMainBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.bottomMenu.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.icon_menu -> {
+                    parentFragmentManager.beginTransaction()
+                        .remove(parentFragmentManager.findFragmentById(R.id.fragment_container)!!)
+                        .commit()
                     val menuFragment = MenuFragment()
                     parentFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, menuFragment)
                         .commit()
                     true
                 }
-
-                else -> false
+                else -> {
+                    parentFragmentManager.beginTransaction()
+                        .remove(parentFragmentManager.findFragmentById(R.id.fragment_container)!!)
+                        .commit()
+                    val archiveFragment = ArchiveFragment()
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, archiveFragment)
+                        .commit()
+                    true
+                }
             }
         }
-            return binding.root
+    }
+
+        override fun onResume() {
+            super.onResume()
+            val menuFragment = MenuFragment()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, menuFragment)
+                .commit()
         }
 
-    override fun onResume() {
-        super.onResume()
-        val menuFragment = MenuFragment()
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, menuFragment)
-            .commit()
-    }
-    }
+}

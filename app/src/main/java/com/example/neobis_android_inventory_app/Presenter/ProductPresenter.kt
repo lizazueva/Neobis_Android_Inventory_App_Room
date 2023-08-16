@@ -32,6 +32,19 @@ class ProductPresenter(context: Context): ProductContract {
         }
     }
 
+    override fun getAllArhived() {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                val products = withContext(Dispatchers.IO) {
+                    repository.getAllArhived()
+                }
+                view?.showProducts(products)
+            } catch (e: Exception) {
+                view?.showError(e.message ?: "Unknown error occurred")
+            }
+        }
+    }
+
     override fun insertProduct(product: Product) {
         CoroutineScope(Dispatchers.IO).launch {
             repository.insert(product)
@@ -45,6 +58,12 @@ class ProductPresenter(context: Context): ProductContract {
     override fun updateProduct(product: Product) {
         CoroutineScope(Dispatchers.IO).launch {
             repository.updateProduct(product)
+        }
+    }
+
+    override fun deleteProduct(product: Product) {
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.deleteProduct(product)
         }
     }
 

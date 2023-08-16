@@ -2,6 +2,7 @@ package com.example.neobis_android_inventory_app.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
@@ -14,8 +15,12 @@ interface Dao {
     suspend fun insert(product: Product)
     @Query("SELECT*FROM ProductDB")
     suspend fun getAllProduct(): List<Product>
+    @Query("SELECT*FROM ProductDB WHERE arhived = 'true'")
+    suspend fun getAllArhived(): List<Product>
     @Query("SELECT * FROM ProductDB WHERE id =(:id)")
     fun getProduct(id: Int): LiveData<Product?>
     @Update
     suspend fun updateProduct(product: Product)
+    @Delete
+    suspend fun deleteProduct(product: Product)
 }

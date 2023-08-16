@@ -83,6 +83,7 @@ import com.example.neobis_android_inventory_app.databinding.FragmentDetailBindin
                 name,
                 price,
                 brand,
+                false,
                 amount
             )
             if (product != null) {

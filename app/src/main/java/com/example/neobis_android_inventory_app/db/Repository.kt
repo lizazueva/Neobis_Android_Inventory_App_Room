@@ -29,4 +29,14 @@ open class Repository(val productDao: Dao) {
         productDao.updateProduct(product)
     }
 
+    suspend fun getAllArhived(): List<Product> {
+        return  withContext(Dispatchers.IO){
+            productDao.getAllArhived()
+        }
+    }
+
+    suspend fun deleteProduct(product: Product){
+        productDao.deleteProduct(product)
+    }
+
 }

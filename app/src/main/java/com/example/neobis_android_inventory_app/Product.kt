@@ -19,6 +19,8 @@ data class Product (
     var  price: String,
     @ColumnInfo(name = "brand")
     var  brand: String,
+    @ColumnInfo(name = "arhived")
+    var  arhived: Boolean = false,
     @ColumnInfo(name = "amount")
     var  amount: String):Parcelable{
 
