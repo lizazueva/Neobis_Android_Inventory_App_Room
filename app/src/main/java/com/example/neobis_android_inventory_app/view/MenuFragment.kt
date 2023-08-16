@@ -33,7 +33,7 @@ class MenuFragment : Fragment(), ViewContract,RecyclerViewAdapter.OnItemClickLis
             findNavController().navigate(R.id.action_mainFragment_to_detailFragment)
         }
 
-        adapter = RecyclerViewAdapter(emptyList(), this)
+        adapter = RecyclerViewAdapter(emptyList(), this,requireContext())
         binding.recyclerMenu.adapter = adapter
 
         getAllProducts()

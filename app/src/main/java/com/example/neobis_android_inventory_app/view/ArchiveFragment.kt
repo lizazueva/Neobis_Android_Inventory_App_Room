@@ -29,7 +29,7 @@ class ArchiveFragment : Fragment(), ViewContract, RecyclerViewAdapter.OnItemClic
         binding = FragmentArchiveBinding.inflate(inflater, container, false)
         val layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recyclerMenuArhive.layoutManager = layoutManager
-        adapter = RecyclerViewAdapter(emptyList(), this)
+        adapter = RecyclerViewAdapter(emptyList(), this, requireContext())
         binding.recyclerMenuArhive.adapter = adapter
         getAllArhived()
         return binding.root

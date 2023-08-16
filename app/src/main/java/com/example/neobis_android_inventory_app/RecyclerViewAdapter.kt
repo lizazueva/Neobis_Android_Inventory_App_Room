@@ -9,13 +9,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.neobis_android_inventory_app.Presenter.ProductPresenter
 import com.example.neobis_android_inventory_app.databinding.BottomSheetDialogBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
-class RecyclerViewAdapter (var product: List<Product>, val listener: OnItemClickListener) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>(){
+class RecyclerViewAdapter (var product: List<Product>, val listener: OnItemClickListener, val context: Context) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>(){
 
     interface OnItemClickListener {
         fun onItemClick(product: Product)
@@ -43,10 +44,10 @@ class RecyclerViewAdapter (var product: List<Product>, val listener: OnItemClick
         holder.cardItem.setOnClickListener {
             listener.onItemClick(product[position])
         }
-        val dialogUtils = Dialog()
+        val dialogUtils = Dialog(context)
 
         holder.dots.setOnClickListener {
-            dialogUtils.showSheet(holder.dots.context, currentItem)
+            dialogUtils.dialog(holder.dots.context, currentItem)
             }
         }
 
