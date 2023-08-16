@@ -24,23 +24,11 @@ class MainFragment : Fragment() {
         binding.bottomMenu.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.icon_menu -> {
-                    parentFragmentManager.beginTransaction()
-                        .remove(parentFragmentManager.findFragmentById(R.id.fragment_container)!!)
-                        .commit()
-                    val menuFragment = MenuFragment()
-                    parentFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, menuFragment)
-                        .commit()
+                    replaceFragment(MenuFragment())
                     true
                 }
                 else -> {
-                    parentFragmentManager.beginTransaction()
-                        .remove(parentFragmentManager.findFragmentById(R.id.fragment_container)!!)
-                        .commit()
-                    val archiveFragment = ArchiveFragment()
-                    parentFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, archiveFragment)
-                        .commit()
+                    replaceFragment(ArchiveFragment())
                     true
                 }
             }
@@ -49,10 +37,12 @@ class MainFragment : Fragment() {
 
         override fun onResume() {
             super.onResume()
-            val menuFragment = MenuFragment()
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, menuFragment)
-                .commit()
+            replaceFragment(MenuFragment())
         }
+    private fun replaceFragment(fragment: Fragment) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
+    }
 
 }

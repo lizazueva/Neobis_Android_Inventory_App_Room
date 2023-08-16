@@ -15,5 +15,5 @@
     <string name="button_add">Добавить</string>
     <string name="text_topbar">Главное</string>
     <string name="text_arhive">Архивировать</string>
-    <string name="text_topbar_arhive">Архив</string>
+    <string name="text_delete">Удалить</string>
 </resources>

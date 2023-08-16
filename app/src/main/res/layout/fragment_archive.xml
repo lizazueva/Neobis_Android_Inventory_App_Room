@@ -13,7 +13,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="34dp"
         android:fontFamily="@font/roboto_bold"
-        android:text="@string/text_topbar_arhive"
+        android:text="Архив"
         android:textColor="#003C68"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"

@@ -38,11 +38,12 @@ class ArchiveFragment : Fragment(), ViewContract, RecyclerViewAdapter.OnItemClic
     private fun getAllArhived() {
         presenter = ProductPresenter(requireContext())
         presenter.attachView(this)
-        presenter.getAllArhived()
+        presenter.getAllProducts()
     }
 
     override fun showProducts(products: List<Product>) {
-        adapter.product = products
+        adapter.product = products.filter { it.arhived }
+//        adapter.product = products
         adapter.notifyDataSetChanged()
     }
 
