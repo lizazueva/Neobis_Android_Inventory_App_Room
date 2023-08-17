@@ -1,6 +1,7 @@
 package com.example.neobis_android_inventory_app.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,7 @@ class MenuFragment : Fragment(), ViewContract,RecyclerViewAdapter.OnItemClickLis
     private lateinit var binding: FragmentMenuBinding
     private lateinit var presenter: ProductPresenter
     private lateinit var adapter: RecyclerViewAdapter
+    var products = emptyList<Product>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,15 +33,12 @@ class MenuFragment : Fragment(), ViewContract,RecyclerViewAdapter.OnItemClickLis
         binding.recyclerMenu.layoutManager = layoutManager
 
         binding.floatingActionButton.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_detailFragment)
+            findNavController().navigate(R.id.action_menuFragment_to_detailFragment)
         }
 
-        var products = emptyList<Product>()
-
-//        adapter = RecyclerViewAdapter(emptyList(), this,requireContext())
         adapter = RecyclerViewAdapter(products, this,requireContext())
         binding.recyclerMenu.adapter = adapter
-        adapter.setData(products)
+//        adapter.setData(products)
 
         getAllProducts()
 
@@ -64,6 +63,13 @@ class MenuFragment : Fragment(), ViewContract,RecyclerViewAdapter.OnItemClickLis
             })
         }
 
+    override fun onResume() {
+        super.onResume()
+        Log.d("TAG", "onResume() called")
+        adapter.setData(products)
+
+    }
+
     private fun filterProducts(query: String) {
         val filteredList = mutableListOf<Product>()
         for (product in adapter.product) {
@@ -82,7 +88,7 @@ class MenuFragment : Fragment(), ViewContract,RecyclerViewAdapter.OnItemClickLis
     }
 
     override fun showProducts(products: List<Product>) {
-        adapter.product = products.filter { !it.arhived }
+        adapter.product = products
         adapter.notifyDataSetChanged()
     }
 
@@ -90,12 +96,9 @@ class MenuFragment : Fragment(), ViewContract,RecyclerViewAdapter.OnItemClickLis
     }
 
     override fun onItemClick(product: Product) {
-        val action = MainFragmentDirections.actionMainFragmentToDetailFragment(product)
+        val action = MenuFragmentDirections.actionMenuFragmentToDetailFragment(product)
         findNavController().navigate(action)
     }
-
-
-
 
     override fun onDestroy() {
         super.onDestroy()

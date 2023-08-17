@@ -46,12 +46,12 @@ import com.example.neobis_android_inventory_app.databinding.FragmentDetailBindin
 
 
         binding.imageViewBack.setOnClickListener {
-            val action = DetailFragmentDirections.actionDetailFragmentToMainFragment()
+            val action = DetailFragmentDirections.actionDetailFragmentToMenuFragment()
             findNavController().navigate(action)
         }
 
         binding.buttonCancel.setOnClickListener {
-            val action = DetailFragmentDirections.actionDetailFragmentToMainFragment()
+            val action = DetailFragmentDirections.actionDetailFragmentToMenuFragment()
             findNavController().navigate(action)
 
         }
@@ -93,7 +93,7 @@ import com.example.neobis_android_inventory_app.databinding.FragmentDetailBindin
                 presenter.insertProduct(updatedProduct)
                 Toast.makeText(requireContext(), "Товар добавлен", Toast.LENGTH_SHORT).show()
             }
-            val action = DetailFragmentDirections.actionDetailFragmentToMainFragment()
+            val action = DetailFragmentDirections.actionDetailFragmentToMenuFragment()
             findNavController().navigate(action)
         } else {
             Toast.makeText(requireContext(), "Не все поля заполнены", Toast.LENGTH_SHORT).show()

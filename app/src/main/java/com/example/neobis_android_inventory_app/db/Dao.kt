@@ -13,9 +13,9 @@ import java.util.UUID
 interface Dao {
     @Insert
     suspend fun insert(product: Product)
-    @Query("SELECT*FROM ProductDB")
+    @Query("SELECT*FROM ProductDB WHERE arhived = 0")
     suspend fun getAllProduct(): List<Product>
-    @Query("SELECT*FROM ProductDB WHERE arhived = 'true'")
+    @Query("SELECT*FROM ProductDB WHERE arhived = 1")
     suspend fun getAllArhived(): List<Product>
     @Query("SELECT * FROM ProductDB WHERE id =(:id)")
     fun getProduct(id: Int): LiveData<Product?>
