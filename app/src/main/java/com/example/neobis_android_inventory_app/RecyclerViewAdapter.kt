@@ -1,25 +1,18 @@
 package com.example.neobis_android_inventory_app
 
-import android.app.AlertDialog
 import android.content.Context
 import com.example.neobis_android_inventory_app.databinding.ItemBinding
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.neobis_android_inventory_app.Presenter.ProductPresenter
-import com.example.neobis_android_inventory_app.databinding.BottomSheetDialogBinding
-import com.google.android.material.bottomsheet.BottomSheetDialog
+
 
 class RecyclerViewAdapter (var product: List<Product>, val listener: OnItemClickListener, val context: Context) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>(){
-
-//    private val differ: AsyncListDiffer = AsyncListDiffer(this, DiffCallback())
 
     interface OnItemClickListener {
         fun onItemClick(product: Product)
@@ -62,5 +55,11 @@ class RecyclerViewAdapter (var product: List<Product>, val listener: OnItemClick
         val amount: TextView = binding.textAmount
         val cardItem: CardView = binding.cardItem
         val dots: ImageView = binding.iconThreeDots
+    }
+
+    fun setData(newProduct: List<Product>){
+        val diffUtil = DiffUtils(product, newProduct)
+        val diffResult = DiffUtil.calculateDiff(diffUtil)
+        diffResult.dispatchUpdatesTo(this)
     }
 }
