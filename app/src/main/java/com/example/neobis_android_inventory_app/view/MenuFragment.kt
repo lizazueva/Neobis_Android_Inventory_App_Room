@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.neobis_android_inventory_app.Presenter.ProductPresenter
@@ -41,6 +42,35 @@ class MenuFragment : Fragment(), ViewContract,RecyclerViewAdapter.OnItemClickLis
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText.isNullOrEmpty()) {
+                    getAllProducts()
+                } else {
+                    newText?.let { filterProducts(it) }
+                }
+                return true
+            }
+            })
+        }
+
+    private fun filterProducts(query: String) {
+        val filteredList = mutableListOf<Product>()
+        for (product in adapter.product) {
+            if (product.name.contains(query, ignoreCase = true)) {
+                filteredList.add(product)
+            }
+        }
+        adapter.product = filteredList
+        adapter.notifyDataSetChanged()
+    }
+
     private fun getAllProducts() {
         presenter = ProductPresenter(requireContext())
         presenter.attachView(this)
@@ -61,10 +91,11 @@ class MenuFragment : Fragment(), ViewContract,RecyclerViewAdapter.OnItemClickLis
     }
 
 
+
+
     override fun onDestroy() {
         super.onDestroy()
         presenter.detachView()
     }
-
-
 }
+

@@ -6,14 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.neobis_android_inventory_app.Presenter.ProductPresenter
 import com.example.neobis_android_inventory_app.Presenter.ViewContract
 import com.example.neobis_android_inventory_app.Product
-import com.example.neobis_android_inventory_app.R
 import com.example.neobis_android_inventory_app.RecyclerViewAdapter
 import com.example.neobis_android_inventory_app.databinding.FragmentArchiveBinding
-import com.example.neobis_android_inventory_app.databinding.FragmentDetailBinding
 
 
 class ArchiveFragment : Fragment(), ViewContract, RecyclerViewAdapter.OnItemClickListener {
@@ -33,6 +32,35 @@ class ArchiveFragment : Fragment(), ViewContract, RecyclerViewAdapter.OnItemClic
         binding.recyclerMenuArhive.adapter = adapter
         getAllArhived()
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.searchViewArhive.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText.isNullOrEmpty()) {
+                    getAllArhived()
+                } else {
+                    newText?.let { filterProducts(it) }
+                }
+                return true
+            }
+        })
+    }
+
+    private fun filterProducts(query: String) {
+        val filteredList = mutableListOf<Product>()
+        for (product in adapter.product) {
+            if (product.name.contains(query, ignoreCase = true)) {
+                filteredList.add(product)
+            }
+        }
+        adapter.product = filteredList
+        adapter.notifyDataSetChanged()
     }
 
     private fun getAllArhived() {
