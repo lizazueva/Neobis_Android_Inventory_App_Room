@@ -78,7 +78,7 @@ class MenuFragment : Fragment(), ViewContract,RecyclerViewAdapter.OnItemClickLis
     }
 
     override fun showProducts(products: List<Product>) {
-        adapter.product = products
+        adapter.product = products.filter { !it.arhived }
         adapter.notifyDataSetChanged()
     }
 

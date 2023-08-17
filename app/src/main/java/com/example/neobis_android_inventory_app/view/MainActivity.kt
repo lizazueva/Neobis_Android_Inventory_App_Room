@@ -1,9 +1,9 @@
-package com.example.neobis_android_inventory_app
+package com.example.neobis_android_inventory_app.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.neobis_android_inventory_app.R
 import com.example.neobis_android_inventory_app.databinding.ActivityMainBinding
-import com.example.neobis_android_inventory_app.view.MenuFragment
 
 class MainActivity : AppCompatActivity() {
 
