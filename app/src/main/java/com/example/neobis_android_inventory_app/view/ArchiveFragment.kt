@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.neobis_android_inventory_app.Dialog
 import com.example.neobis_android_inventory_app.Presenter.ProductPresenter
 import com.example.neobis_android_inventory_app.Presenter.ViewContract
 import com.example.neobis_android_inventory_app.Product
@@ -15,11 +16,12 @@ import com.example.neobis_android_inventory_app.RecyclerViewAdapter
 import com.example.neobis_android_inventory_app.databinding.FragmentArchiveBinding
 
 
-class ArchiveFragment : Fragment(), ViewContract, RecyclerViewAdapter.OnItemClickListener {
+class ArchiveFragment : Fragment(), ViewContract, RecyclerViewAdapter.OnItemClickListener, Dialog.DialogListener {
 
     private lateinit var binding:FragmentArchiveBinding
     private lateinit var presenter: ProductPresenter
     private lateinit var adapter: RecyclerViewAdapter
+    var products = emptyList<Product>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +30,7 @@ class ArchiveFragment : Fragment(), ViewContract, RecyclerViewAdapter.OnItemClic
         binding = FragmentArchiveBinding.inflate(inflater, container, false)
         val layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recyclerMenuArhive.layoutManager = layoutManager
-        adapter = RecyclerViewAdapter(emptyList(), this, requireContext())
+        adapter = RecyclerViewAdapter(products, this, requireContext(), this)
         binding.recyclerMenuArhive.adapter = adapter
         getAllArhived()
         return binding.root
@@ -80,6 +82,11 @@ class ArchiveFragment : Fragment(), ViewContract, RecyclerViewAdapter.OnItemClic
 
     override fun onItemClick(product: Product) {
         Toast.makeText(context, "Товар архивирован, его нельзя изменить", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDialogClosed() {
+        adapter.setData(products)
+        presenter.getAllArhived()
     }
 
 

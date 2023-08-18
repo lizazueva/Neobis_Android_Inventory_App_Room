@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 
-class RecyclerViewAdapter (var product: List<Product>, val listener: OnItemClickListener, val context: Context) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>(){
+class RecyclerViewAdapter (var product: List<Product>, val listener: OnItemClickListener, val context: Context, val dialogListener: Dialog.DialogListener) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>(){
 
     interface OnItemClickListener {
         fun onItemClick(product: Product)
@@ -43,7 +43,7 @@ class RecyclerViewAdapter (var product: List<Product>, val listener: OnItemClick
         val dialogUtils = Dialog(context)
 
         holder.dots.setOnClickListener {
-            dialogUtils.dialog(holder.dots.context, currentItem)
+            dialogUtils.dialog(holder.dots.context, currentItem, dialogListener)
             }
         }
 

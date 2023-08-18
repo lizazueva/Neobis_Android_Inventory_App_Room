@@ -5,15 +5,22 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.neobis_android_inventory_app.Presenter.ProductPresenter
+import com.example.neobis_android_inventory_app.Presenter.ViewContract
 import com.example.neobis_android_inventory_app.databinding.BottomSheetDialogArchiveBinding
 import com.example.neobis_android_inventory_app.databinding.BottomSheetDialogBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
-class Dialog(private val context: Context) {
+class Dialog(private val context: Context): ViewContract {
 
-    private val presenter = ProductPresenter(context)
+    interface DialogListener {
+        fun onDialogClosed()
+    }
 
-    fun dialog(context: Context, currentItem: Product) {
+    private var listener: DialogListener? = null
+    private var presenter = ProductPresenter(context)
+
+    fun dialog(context: Context, currentItem: Product, listener: DialogListener) {
+        this.listener = listener
         if (!currentItem.arhived) {
             val binding: BottomSheetDialogBinding =
                 BottomSheetDialogBinding.inflate(LayoutInflater.from(context))
@@ -54,6 +61,7 @@ class Dialog(private val context: Context) {
             presenter.updateProduct(currentItem)
             Toast.makeText(context, "Товар ${currentItem.name} архивирован", Toast.LENGTH_SHORT)
                 .show()
+            listener?.onDialogClosed()
             dialog.dismiss()
         }
 
@@ -77,8 +85,9 @@ class Dialog(private val context: Context) {
             presenter.updateProduct(currentItem)
             Toast.makeText(context, "Товар ${currentItem.name} восстановлен", Toast.LENGTH_SHORT)
                 .show()
+            listener?.onDialogClosed()
             dialog.dismiss()
-        }
+    }
 
         val alertDialog = builder.create()
         alertDialog.show()
@@ -94,11 +103,21 @@ class Dialog(private val context: Context) {
         }
         builder.setPositiveButton("Да") { dialog, i ->
             presenter.deleteProduct(currentItem)
+            presenter.getAllArhived()
             Toast.makeText(context, "Товар ${currentItem.name} удален", Toast.LENGTH_SHORT).show()
+            listener?.onDialogClosed()
             dialog.dismiss()
         }
 
         val alertDialog = builder.create()
         alertDialog.show()
+    }
+
+    override fun showProducts(products: List<Product>) {
+
+    }
+
+    override fun showError(message: String) {
+
     }
 }

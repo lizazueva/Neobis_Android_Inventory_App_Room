@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.neobis_android_inventory_app.Dialog
 import com.example.neobis_android_inventory_app.Presenter.ProductPresenter
 import com.example.neobis_android_inventory_app.Presenter.ViewContract
 import com.example.neobis_android_inventory_app.Product
@@ -17,7 +18,8 @@ import com.example.neobis_android_inventory_app.RecyclerViewAdapter
 import com.example.neobis_android_inventory_app.databinding.FragmentMenuBinding
 
 
-class MenuFragment : Fragment(), ViewContract,RecyclerViewAdapter.OnItemClickListener {
+class MenuFragment : Fragment(), ViewContract,RecyclerViewAdapter.OnItemClickListener,
+    Dialog.DialogListener {
 
     private lateinit var binding: FragmentMenuBinding
     private lateinit var presenter: ProductPresenter
@@ -35,11 +37,8 @@ class MenuFragment : Fragment(), ViewContract,RecyclerViewAdapter.OnItemClickLis
         binding.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_menuFragment_to_detailFragment)
         }
-
-        adapter = RecyclerViewAdapter(products, this,requireContext())
+        adapter = RecyclerViewAdapter(products, this,requireContext(), this)
         binding.recyclerMenu.adapter = adapter
-//        adapter.setData(products)
-
         getAllProducts()
 
         return binding.root
@@ -103,6 +102,11 @@ class MenuFragment : Fragment(), ViewContract,RecyclerViewAdapter.OnItemClickLis
     override fun onDestroy() {
         super.onDestroy()
         presenter.detachView()
+    }
+
+    override fun onDialogClosed() {
+        adapter.setData(products)
+        presenter.getAllProducts()
     }
 }
 
